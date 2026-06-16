@@ -1,0 +1,355 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const U = "https://images.unsplash.com/";
+const q = "?auto=format&fit=crop&q=80";
+const img = {
+  hero: U + "photo-1605497788044-5a32c7078486" + q + "&w=1100",
+  studio: U + "photo-1521590832167-7bcbfaa6381f" + q + "&w=1100",
+  before: U + "photo-1519699047748-de8e457a634e" + q + "&w=1200",
+  after: U + "photo-1457972729786-0411a3b2b626" + q + "&w=1200",
+  team1: U + "photo-1494790108377-be9c29b29330" + q + "&w=700",
+  team2: U + "photo-1500648767791-00dcc994a43e" + q + "&w=700",
+  team3: U + "photo-1438761681033-6461ffad8d80" + q + "&w=700",
+};
+
+const uslugi = [
+  { nr: "01", name: "Strzyżenie", desc: "Damskie, męskie i dziecięce — z konsultacją i stylizacją.", od: "od 80 zł" },
+  { nr: "02", name: "Koloryzacja & balejaż", desc: "Sombre, balejaż, refleksy i pełna koloryzacja.", od: "od 220 zł" },
+  { nr: "03", name: "Stylizacja & upięcia", desc: "Fryzury okolicznościowe, ślubne i wieczorowe.", od: "od 150 zł" },
+  { nr: "04", name: "Pielęgnacja & regeneracja", desc: "Nanoplastia, keratyna, zabiegi odbudowujące.", od: "od 180 zł" },
+];
+
+const cennik = [
+  { name: "Strzyżenie męskie", price: "80 zł" },
+  { name: "Strzyżenie damskie + modelowanie", price: "130 zł" },
+  { name: "Koloryzacja jednolita", price: "od 220 zł" },
+  { name: "Balejaż / sombre", price: "od 350 zł" },
+  { name: "Modelowanie / prostowanie", price: "70 zł" },
+  { name: "Upięcie okolicznościowe", price: "od 150 zł" },
+  { name: "Zabieg keratynowy", price: "od 280 zł" },
+  { name: "Konsultacja", price: "gratis" },
+];
+
+const zespol = [
+  { name: "Marta Wiśniewska", role: "Founder · Master Stylist", img: img.team1 },
+  { name: "Jakub Lewandowski", role: "Barber · Color Specialist", img: img.team2 },
+  { name: "Ola Kamińska", role: "Stylist · Bridal Expert", img: img.team3 },
+];
+
+const marquee = ["Strzyżenie", "Koloryzacja", "Balejaż", "Stylizacja", "Regeneracja", "Upięcia", "Konsultacje"];
+---
+
+<Layout>
+  <!-- ===================== NAV ===================== -->
+  <nav id="nav" class="fixed inset-x-0 top-0 z-40 transition-all duration-500">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+      <a href="#top" class="flex items-baseline gap-2">
+        <span class="font-display text-2xl font-600 tracking-tight">Loft</span>
+        <span class="text-[10px] uppercase tracking-[0.4em] text-ash">Hair&nbsp;Studio</span>
+      </a>
+
+      <div class="hidden items-center gap-9 md:flex">
+        <a href="#studio" class="nav-link text-xs uppercase tracking-[0.2em] text-ash transition hover:text-bone">Studio</a>
+        <a href="#uslugi" class="nav-link text-xs uppercase tracking-[0.2em] text-ash transition hover:text-bone">Usługi</a>
+        <a href="#metamorfozy" class="nav-link text-xs uppercase tracking-[0.2em] text-ash transition hover:text-bone">Metamorfozy</a>
+        <a href="#cennik" class="nav-link text-xs uppercase tracking-[0.2em] text-ash transition hover:text-bone">Cennik</a>
+        <a href="#zespol" class="nav-link text-xs uppercase tracking-[0.2em] text-ash transition hover:text-bone">Zespół</a>
+        <a href="#wizyta" class="border border-sand px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-sand transition-all hover:bg-sand hover:text-noir">Umów wizytę</a>
+      </div>
+
+      <button id="burger" class="md:hidden" aria-label="Menu">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden border-t border-line bg-coal px-6 py-5 md:hidden">
+      <div class="flex flex-col gap-4 text-sm uppercase tracking-[0.2em] text-bone">
+        <a href="#studio">Studio</a>
+        <a href="#uslugi">Usługi</a>
+        <a href="#metamorfozy">Metamorfozy</a>
+        <a href="#cennik">Cennik</a>
+        <a href="#zespol">Zespół</a>
+        <a href="#wizyta" class="border border-sand px-5 py-3 text-center text-sand">Umów wizytę</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header id="top" class="relative min-h-screen overflow-hidden bg-noir">
+    <!-- pionowy label -->
+    <div class="fade absolute left-6 top-1/2 hidden -translate-y-1/2 lg:block" style="animation-delay:1s">
+      <span class="block origin-left -rotate-90 text-[11px] uppercase tracking-[0.5em] text-ash">Est. 2019 — Warszawa</span>
+    </div>
+
+    <div class="mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-6 pt-28 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
+      <!-- Lewa: typografia -->
+      <div>
+        <p class="fade mb-6 text-xs uppercase tracking-[0.35em] text-sand" style="animation-delay:.2s">Autorskie fryzjerstwo</p>
+        <h1 class="font-display text-[clamp(3.5rem,11vw,9rem)] font-500 leading-[0.86] tracking-tight">
+          <span class="line-mask"><span style="animation-delay:.15s">Loft</span></span>
+          <span class="line-mask"><span class="italic text-sand" style="animation-delay:.3s">Hair</span></span>
+          <span class="line-mask"><span style="animation-delay:.45s">Studio</span></span>
+        </h1>
+        <p class="fade mt-8 max-w-md text-lg leading-relaxed text-ash" style="animation-delay:.7s">
+          Miejsce, w którym precyzja spotyka się ze stylem. Tworzymy fryzury,
+          które pracują na Ciebie każdego dnia — nie tylko od święta.
+        </p>
+        <div class="fade mt-10 flex flex-wrap items-center gap-5" style="animation-delay:.85s">
+          <a href="#wizyta" class="bg-sand px-8 py-4 text-xs uppercase tracking-[0.25em] text-noir transition-all hover:-translate-y-0.5 hover:bg-bone">Umów wizytę</a>
+          <a href="#metamorfozy" class="group flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-bone">
+            Zobacz metamorfozy
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Prawa: portret -->
+      <div class="fade relative hidden h-[78vh] lg:block" style="animation-delay:.5s">
+        <div class="absolute inset-0 bg-smoke"></div>
+        <img src={img.hero} alt="Stylizacja włosów w salonie" class="absolute inset-0 h-full w-full object-cover" />
+        <div class="absolute -bottom-px -left-px bg-noir px-5 py-3">
+          <span class="font-display text-sm italic text-sand">„details make the cut”</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <section class="border-y border-line bg-coal py-6">
+    <div class="flex overflow-hidden whitespace-nowrap">
+      <div class="marquee-track flex shrink-0 items-center">
+        {[...marquee, ...marquee].map((w) => (
+          <span class="mx-8 flex items-center gap-8 font-display text-2xl text-ash">
+            {w}<span class="text-sand">✦</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STUDIO ===================== -->
+  <section id="studio" class="py-24 lg:py-32">
+    <div class="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
+      <div class="reveal order-2 lg:order-1">
+        <p class="text-xs uppercase tracking-[0.35em] text-sand">O studiu</p>
+        <h2 class="mt-4 font-display text-4xl font-500 leading-tight sm:text-5xl">
+          Industrialna przestrzeń,<br /><span class="italic text-sand">indywidualne podejście</span>
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-ash">
+          Loft to kameralny salon w sercu miasta — surowy beton, ciepłe światło
+          i tylko cztery fotele. Bez pośpiechu, bez kompromisów. Każda wizyta
+          zaczyna się od rozmowy i analizy włosów.
+        </p>
+        <div class="mt-10 grid grid-cols-3 gap-6 border-t border-line pt-8">
+          <div>
+            <p class="font-display text-4xl text-sand">7</p>
+            <p class="mt-1 text-xs uppercase tracking-wider text-ash">lat doświadczenia</p>
+          </div>
+          <div>
+            <p class="font-display text-4xl text-sand">4</p>
+            <p class="mt-1 text-xs uppercase tracking-wider text-ash">stanowiska</p>
+          </div>
+          <div>
+            <p class="font-display text-4xl text-sand">5,0</p>
+            <p class="mt-1 text-xs uppercase tracking-wider text-ash">ocena Google</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal order-1 aspect-[4/5] bg-smoke lg:order-2">
+        <img src={img.studio} alt="Wnętrze salonu Loft" class="h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== USŁUGI ===================== -->
+  <section id="uslugi" class="border-t border-line py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="reveal mb-14 flex flex-wrap items-end justify-between gap-6">
+        <h2 class="font-display text-4xl font-500 sm:text-5xl">Usługi</h2>
+        <p class="max-w-sm text-ash">Pełen zakres usług fryzjerskich — od codziennej pielęgnacji po metamorfozy.</p>
+      </div>
+
+      <div class="divide-y divide-line border-y border-line">
+        {uslugi.map((u) => (
+          <div class="reveal group grid grid-cols-1 items-center gap-4 py-8 transition-colors hover:bg-coal sm:grid-cols-[80px_1fr_auto] sm:gap-8 sm:px-4">
+            <span class="font-display text-2xl text-sand">{u.nr}</span>
+            <div>
+              <h3 class="font-display text-2xl font-500 transition-transform group-hover:translate-x-2">{u.name}</h3>
+              <p class="mt-1 text-ash">{u.desc}</p>
+            </div>
+            <span class="text-sm uppercase tracking-widest text-bone">{u.od}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== METAMORFOZY (before/after) ===================== -->
+  <section id="metamorfozy" class="bg-coal py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6 lg:px-10">
+      <div class="reveal mb-12 text-center">
+        <p class="text-xs uppercase tracking-[0.35em] text-sand">Metamorfozy</p>
+        <h2 class="mt-3 font-display text-4xl font-500 sm:text-5xl">Przesuń i zobacz różnicę</h2>
+        <p class="mx-auto mt-4 max-w-lg text-ash">Prawdziwe efekty pracy naszych stylistów. Złap suwak i przeciągnij.</p>
+      </div>
+
+      <div id="ba" class="reveal relative aspect-[3/2] w-full select-none overflow-hidden bg-smoke">
+        <img src={img.after} alt="Po metamorfozie" class="pointer-events-none absolute inset-0 h-full w-full object-cover" />
+        <img id="ba-before" src={img.before} alt="Przed metamorfozą" class="pointer-events-none absolute inset-0 h-full w-full object-cover" style="clip-path: inset(0 50% 0 0)" />
+
+        <!-- linia podziału -->
+        <div id="ba-line" class="pointer-events-none absolute inset-y-0 z-10 w-px -translate-x-1/2 bg-bone" style="left:50%">
+          <div class="absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-bone bg-noir/80 backdrop-blur">
+            <span class="text-bone">⇄</span>
+          </div>
+        </div>
+
+        <span class="absolute left-4 top-4 z-10 bg-noir/70 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-bone">Przed</span>
+        <span class="absolute right-4 top-4 z-10 bg-sand px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-noir">Po</span>
+
+        <input id="ba-range" type="range" min="0" max="100" value="50" class="ba-range absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0" aria-label="Suwak przed i po" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CENNIK ===================== -->
+  <section id="cennik" class="py-24 lg:py-32">
+    <div class="mx-auto max-w-4xl px-6 lg:px-10">
+      <div class="reveal mb-14 text-center">
+        <h2 class="font-display text-4xl font-500 sm:text-5xl">Cennik</h2>
+        <p class="mx-auto mt-4 max-w-lg text-ash">Ceny orientacyjne — ostateczna wycena zależy od długości i gęstości włosów. Ustalamy ją zawsze przed zabiegiem.</p>
+      </div>
+
+      <ul class="reveal divide-y divide-line border-y border-line">
+        {cennik.map((c) => (
+          <li class="flex items-baseline gap-4 py-5">
+            <span class="text-lg">{c.name}</span>
+            <span class="h-px flex-1 translate-y-[-3px] border-b border-dotted border-line"></span>
+            <span class="font-display text-lg text-sand">{c.price}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== ZESPÓŁ ===================== -->
+  <section id="zespol" class="border-t border-line py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="reveal mb-14">
+        <p class="text-xs uppercase tracking-[0.35em] text-sand">Zespół</p>
+        <h2 class="mt-3 font-display text-4xl font-500 sm:text-5xl">Ludzie z nożyczkami</h2>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {zespol.map((p) => (
+          <figure class="reveal group">
+            <div class="aspect-[3/4] overflow-hidden bg-smoke">
+              <img src={p.img} alt={p.name} loading="lazy" class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" />
+            </div>
+            <figcaption class="mt-4">
+              <p class="font-display text-xl font-500">{p.name}</p>
+              <p class="mt-0.5 text-xs uppercase tracking-[0.2em] text-sand">{p.role}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WIZYTA / KONTAKT ===================== -->
+  <section id="wizyta" class="bg-coal py-24 lg:py-32">
+    <div class="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
+      <div class="reveal">
+        <p class="text-xs uppercase tracking-[0.35em] text-sand">Rezerwacja</p>
+        <h2 class="mt-3 font-display text-4xl font-500 leading-tight sm:text-5xl">Umów wizytę online</h2>
+        <p class="mt-4 text-ash">Wybierz usługę i dogodny termin — potwierdzimy go SMS-em w ciągu kilku godzin.</p>
+
+        <form class="mt-8 space-y-5" onsubmit="event.preventDefault(); this.reset(); document.getElementById('ok').classList.remove('hidden');">
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-ash">Imię</span>
+              <input type="text" required class="mt-2 w-full border border-line bg-noir px-4 py-3 text-bone outline-none transition focus:border-sand" />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-ash">Telefon</span>
+              <input type="tel" required class="mt-2 w-full border border-line bg-noir px-4 py-3 text-bone outline-none transition focus:border-sand" />
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-ash">Usługa</span>
+              <select class="mt-2 w-full border border-line bg-noir px-4 py-3 text-bone outline-none transition focus:border-sand">
+                <option>Strzyżenie</option>
+                <option>Koloryzacja / balejaż</option>
+                <option>Stylizacja / upięcie</option>
+                <option>Pielęgnacja</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-xs uppercase tracking-wider text-ash">Preferowany termin</span>
+              <input type="datetime-local" required class="mt-2 w-full border border-line bg-noir px-4 py-3 text-bone outline-none transition focus:border-sand" />
+            </label>
+          </div>
+          <button type="submit" class="bg-sand px-8 py-4 text-xs uppercase tracking-[0.25em] text-noir transition-all hover:-translate-y-0.5 hover:bg-bone">Zarezerwuj termin</button>
+          <p id="ok" class="hidden font-display text-lg italic text-sand">Dziękujemy! Potwierdzimy termin SMS-em. ✦</p>
+        </form>
+      </div>
+
+      <div class="reveal flex flex-col gap-8">
+        <div class="aspect-[16/10] overflow-hidden border border-line">
+          <iframe
+            title="Mapa dojazdu"
+            class="h-full w-full opacity-90 invert"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=21.005%2C52.227%2C21.030%2C52.240&layer=mapnik&marker=52.2335%2C21.0175"
+          ></iframe>
+        </div>
+        <div class="grid gap-8 sm:grid-cols-2">
+          <div>
+            <h3 class="text-xs uppercase tracking-[0.2em] text-sand">Godziny</h3>
+            <ul class="mt-3 space-y-1.5 text-ash">
+              <li class="flex justify-between"><span>Wt — Pt</span><span>10:00 – 20:00</span></li>
+              <li class="flex justify-between"><span>Sobota</span><span>09:00 – 16:00</span></li>
+              <li class="flex justify-between"><span>Ndz — Pon</span><span>nieczynne</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xs uppercase tracking-[0.2em] text-sand">Kontakt</h3>
+            <ul class="mt-3 space-y-1.5 text-ash">
+              <li>ul. Wilcza 28</li>
+              <li>00-544 Warszawa</li>
+              <li><a href="tel:+48501234567" class="transition hover:text-bone">+48 501 234 567</a></li>
+              <li><a href="mailto:hej@lofthair.pl" class="transition hover:text-bone">hej@lofthair.pl</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-line py-12">
+    <div class="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 text-center md:flex-row md:justify-between md:text-left lg:px-10">
+      <div class="flex items-baseline gap-2">
+        <span class="font-display text-2xl font-600">Loft</span>
+        <span class="text-[10px] uppercase tracking-[0.4em] text-ash">Hair Studio</span>
+      </div>
+      <div class="flex gap-6 text-xs uppercase tracking-[0.2em] text-ash">
+        <a href="#" class="transition hover:text-bone">Instagram</a>
+        <a href="#" class="transition hover:text-bone">Facebook</a>
+        <a href="#" class="transition hover:text-bone">Booksy</a>
+      </div>
+      <p class="text-xs text-ash">© 2026 Loft Hair Studio · projekt — portfolio</p>
+    </div>
+  </footer>
+
+  <style>
+    /* Po przewinięciu nawigacja dostaje ciemne, rozmyte tło */
+    #nav.scrolled {
+      background: color-mix(in srgb, var(--color-noir) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-line);
+    }
+  </style>
+</Layout>
